@@ -13,19 +13,6 @@ public class CuentaInversion extends CuentaBancaria{
         this.montoMinimo = montoMinimo;
         this.rendimientoAnual = rendimientoAnual;
     }
-    //GETTERS Y SETTERS
-    public double getMontoMinimo() {
-        return montoMinimo;
-    }
-    public void setMontoMinimo(double montoMinimo) {
-        this.montoMinimo = montoMinimo;
-    }
-    public double getRendimientoAnual() {
-        return rendimientoAnual;
-    }
-    public void setRendimientoAnual(double rendimientoAnual) {
-        this.rendimientoAnual = rendimientoAnual;
-    }
 
     //METODOS REQUERIDOS
     @Override

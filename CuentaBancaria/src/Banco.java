@@ -40,8 +40,8 @@ public class Banco {
         if(o1 == null || d1 ==null){
             throw new IllegalArgumentException("Cuentas no han sido encontradas");
         }
-        o1.retirar(monto);
-        d1.depositar(monto);
+        o1.depositar(monto);
+        d1.retirar(monto);
     }
 
     public void aplicarInteresesAhorros(){
@@ -53,5 +53,40 @@ public class Banco {
                 ((CuentaAhorros) c).aplicarIntereses();
             }
         }
+    }
+
+    public void obtenerSaldoTotal(){
+        double saldoTotal = 0.0;
+        for(CuentaBancaria c: cuentas){
+            if(c.getSaldo() == 0){
+                throw new CuentaInactivaException("Cuentas inactivas");
+            }
+            saldoTotal += c.getSaldo();
+        }
+        System.out.println("Saldo total: " + saldoTotal);
+    }
+
+    public void ordenarPorSaldo(){
+        int n = cuentas.size();
+        for(int i = 0; i< n -1; i++){
+            for(int j = 0; j<n-1-i;j++){
+                if(cuentas.get(j).getSaldo() > cuentas.get(j+1).getSaldo()){
+
+                    CuentaBancaria orden = cuentas.get(j);
+                    cuentas.set(j,cuentas.get(j+1));
+                    cuentas.set(j+1,orden);
+                }
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        String info ="=== BANCO ===" + "\nNombre: " + nombre +
+                "\nTotal de cuentas: " + cuentas.size();
+        for (CuentaBancaria c: cuentas){
+            info += "\n -" + c.toString();
+        }
+        return info;
     }
 }

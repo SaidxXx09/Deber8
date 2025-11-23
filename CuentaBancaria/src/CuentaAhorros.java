@@ -10,14 +10,6 @@ public class CuentaAhorros extends CuentaBancaria{
         }
         this.tasaInteres = tasaInteres;
     }
-    //GETTER Y SETTER
-
-    public double getTasaInteres() {
-        return tasaInteres;
-    }
-    public void setTasaInteres(double tasaInteres) {
-        this.tasaInteres = tasaInteres;
-    }
 
     //METODOS REQUERIDOS
     @Override
@@ -28,7 +20,7 @@ public class CuentaAhorros extends CuentaBancaria{
         if (getSaldo() - monto < 50){
             throw new SaldoInsuficienteException("Saldo menor a cincuenta invalido");
         }
-        setSaldo(getSaldo()-50);
+        setSaldo(getSaldo()-monto);
     }
 
     public void aplicarIntereses() {
