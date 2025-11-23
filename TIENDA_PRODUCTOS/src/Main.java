@@ -2,6 +2,8 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws StockInsuficienteException,ProdcutoNoEncontradoException,PrecioInvalidoException{
         Inventario tienda = new Inventario("Vale Todo");
+
+        System.out.println("\n");
         //PRECIO NEGATIVO
         try {
             Producto n1 = new ProductoAlimenticio("LECHE_1234","Leche",-1500,5,"12/12/2025",true);
@@ -9,6 +11,9 @@ public class Main {
         } catch (PrecioInvalidoException e) {
             System.out.println("Error: " + e.getMessage());
         }
+
+        System.out.println("\n");
+        //CODIGO VACIO
         try {
             Producto v1 = new ProductoAlimenticio("","Huevo",3,5,"12/12/2025",true);
             tienda.agregarProducto(v1);
@@ -16,21 +21,23 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
 
+        System.out.println("\n");
+        //PRODUCTOS AGREGADOS
         try {
             // ELECTRONICOS
             Producto p1 = new ProductoElectronico("ELEC-1001", "Laptop", 1500, 10, "HP", 12);
-            Producto p2 = new ProductoElectronico("ELEC-1002", "Smartphone", 800, 20, "Samsung", 24);
+            Producto p2 = new ProductoElectronico("ELEC-1002", "Smartphone", 800, 2, "Samsung", 24);
             Producto p3 = new ProductoElectronico("ELEC-1003", "Tablet", 500, 15, "Apple", 12);
-            Producto p4 = new ProductoElectronico("ELEC-1004", "Auriculares", 150, 30, "Sony", 6);
+            Producto p4 = new ProductoElectronico("ELEC-1004", "Auriculares", 150, 3, "Sony", 6);
 
             // ALIMENTICIOS
-            Producto p5 = new ProductoAlimenticio("ALI-2001", "Leche", 2.5, 50, "12/12/2025", true);
-            Producto p6 = new ProductoAlimenticio("ALI-2002", "Pan", 1.2, 40, "05/12/2025", false);
+            Producto p5 = new ProductoAlimenticio("ALI-2001", "Leche", 2.5, 5, "12/12/2025", true);
+            Producto p6 = new ProductoAlimenticio("ALI-2002", "Pan", 1.2, 4, "05/12/2025", false);
             Producto p7 = new ProductoAlimenticio("ALI-2003", "Queso", 5.0, 25, "20/12/2025", true);
 
             //ROPA
-            Producto p8 = new ProductoRopa("ROP-3001", "Camiseta", 15, 30, "M", "Algodón");
-            Producto p9 = new ProductoRopa("ROP-3002", "Pantalón", 25, 20, "L", "Mezclilla");
+            Producto p8 = new ProductoRopa("ROP-3001", "Camiseta", 15, 3, "M", "Algodón");
+            Producto p9 = new ProductoRopa("ROP-3002", "Pantalón", 25, 0, "L", "Mezclilla");
             Producto p10 = new ProductoRopa("ROP-3003", "Chaqueta", 50, 10, "XL", "Cuero");
 
             tienda.agregarProducto(p1);
@@ -43,13 +50,16 @@ public class Main {
             tienda.agregarProducto(p8);
             tienda.agregarProducto(p9);
             tienda.agregarProducto(p10);
+            System.out.println("Productos agregados con exito");
             System.out.println(tienda);
         } catch (PrecioInvalidoException e) {
             System.out.println("Error de precio: " + e.getMessage());
         } catch (IllegalArgumentException e) {
             System.out.println("Error de argumento: " + e.getMessage());
         }
+        System.out.println("\n");
 
+        //VENTAS EXITOSAS
         try {
             tienda.venderProducto("ROP-3001",6);
             System.out.println("$$ Vendido $$");
@@ -57,34 +67,40 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
 
+        System.out.println("\n");
+        //CANTIDAD NEGATIVA
         try {
             tienda.venderProducto("ROP-3002",-5);
         } catch (StockInsuficienteException | ProdcutoNoEncontradoException | IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
+        System.out.println("\n");
 
+        //STOCK INSUFICIENTE
         try {
             tienda.venderProducto("ELEC-1001",30);
         } catch (StockInsuficienteException | ProdcutoNoEncontradoException e) {
             System.out.println("Error: " + e.getMessage());
         }
 
+        System.out.println("\n");
+        //BUSQUEDAD DE PRODUCTO INEXISTENTE
         try {
             tienda.buscarPorCodigo("HOLA");
         } catch (ProdcutoNoEncontradoException e) {
             System.out.println("Error: " + e.getMessage());
         }
+
+        System.out.println("\n");
+        //VALOR TOTAL DEL INVENTARIO
         tienda.calcularValorInventario();
+
+        System.out.println("\n");
+        //ORDENAR POR PRECIO
         tienda.ordenarPorPrecio();
 
-        int minimo = 5;
-        ArrayList<Producto> bajosStock = tienda.listarProductosBajoStock(minimo);
-        if (bajosStock.isEmpty()) {
-            System.out.println("No hay productos con stock bajo.");
-        } else {
-            for (Producto p : bajosStock) {
-                System.out.println(p);
-            }
-        }
+        System.out.println("\n");
+        //STOCK MINIMO
+        System.out.println(tienda.listarProductosBajoStock(5));
     }
 }
