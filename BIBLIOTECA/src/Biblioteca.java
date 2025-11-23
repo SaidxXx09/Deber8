@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 public class Biblioteca {
     private ArrayList<MaterialBiblioteca> catalogo;
@@ -77,5 +78,17 @@ public class Biblioteca {
                 }
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        String info = "=== CATALOGO ===";
+        info += "\nNombre: " + nombre +
+                "\nCantidad de productos: " + catalogo.size();
+        for (MaterialBiblioteca m: catalogo){
+            info += " ._" + m.toString();
+        }
+        info +="\n========================\n";
+        return info;
     }
 }
