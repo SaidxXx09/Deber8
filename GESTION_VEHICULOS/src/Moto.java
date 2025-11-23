@@ -9,14 +9,6 @@ public class Moto extends Vehiculo{
         this.cilindrada = cilindrada;
     }
 
-    public int getCilindrada() {
-        return cilindrada;
-    }
-
-    public void setCilindrada(int cilindrada) {
-        this.cilindrada = cilindrada;
-    }
-
     @Override
     public double calcularImpuestoCirculacion() {
         if(cilindrada <= 250){
@@ -28,6 +20,6 @@ public class Moto extends Vehiculo{
 
     @Override
     public String toString() {
-        return "MOTO " + super.toString() + "| Cilindrada: " + cilindrada + "cc";
+        return super.toString() +"\n=== MOTO ===" + "\nCilindrada: " + cilindrada + "\nImpuesto: "+ calcularImpuestoCirculacion();
     }
 }

@@ -1,20 +1,12 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Concesionaria {
-    private ArrayList<Vehiculo> inventario = new ArrayList<>();
+    private ArrayList<Vehiculo> inventario;
 
-    public Concesionaria(ArrayList<Vehiculo> inventario) {
-        this.inventario = inventario;
+    public Concesionaria() {
+        this.inventario  = new ArrayList<>();
     }
-
-    public ArrayList<Vehiculo> getInventario() {
-        return inventario;
-    }
-
-    public void setInventario(ArrayList<Vehiculo> inventario) {
-        this.inventario = inventario;
-    }
-
     public void agregarVehiculo(Vehiculo v){
         if (v == null){
             throw new NullPointerException("No se puede agregar un vehiculo vacio");
@@ -44,5 +36,17 @@ public class Concesionaria {
         }
         System.out.println("Vehiculo mas caro: " + mayor);
     }
+    public void ordenarPorPrecio(){
+        Collections.sort(inventario,(a,b) -> Double.compare(a.getPrecio(), b.getPrecio()));
+    }
 
+    @Override
+    public String toString() {
+        String info = "\n=== CONCENSIONARIA ===";
+        info += "\nCantidad de vehiculos: " + inventario.size();
+        for (Vehiculo v: inventario){
+             info += "\n"+ v.toString() + "\n";
+        }
+        return info;
+    }
 }

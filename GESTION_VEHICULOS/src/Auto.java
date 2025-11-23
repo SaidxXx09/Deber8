@@ -21,14 +21,6 @@ public class Auto extends Vehiculo{
         this.numPuertas = numPuertas;
     }
 
-    public int getNumPuertas() {
-        return numPuertas;
-    }
-
-    public void setNumPuertas(int numPuertas) {
-        this.numPuertas = numPuertas;
-    }
-
     @Override
     public double calcularImpuestoCirculacion() {
         return getPrecio()*0.05;
@@ -36,6 +28,6 @@ public class Auto extends Vehiculo{
 
     @Override
     public String toString() {
-        return "AUTO " + super.toString() + " | Puertas: " + numPuertas;
+        return  super.toString()+ "\n=== AUTO ===" + "\nPuertas: " + numPuertas + "\nImpuesto: " +calcularImpuestoCirculacion();
     }
 }

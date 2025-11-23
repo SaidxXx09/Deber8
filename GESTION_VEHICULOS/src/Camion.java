@@ -11,13 +11,6 @@ public class Camion extends Vehiculo {
         this.capacidadCarga = capacidadCarga;
     }
 
-    public double getCapacidadCarga() {
-        return capacidadCarga;
-    }
-
-    public void setCapacidadCarga(double capacidadCarga) {
-        this.capacidadCarga = capacidadCarga;
-    }
 
     @Override
     public double calcularImpuestoCirculacion() {
@@ -26,6 +19,6 @@ public class Camion extends Vehiculo {
 
     @Override
     public String toString() {
-        return "CAMIÓN → " + super.toString() + " | Carga: " + capacidadCarga + " toneladas";
+        return  super.toString() +"\n=== CAMIÓN ==="+ "\nCarga: " + capacidadCarga + " toneladas" + "\nImpuestos: "+ calcularImpuestoCirculacion();
     }
 }
